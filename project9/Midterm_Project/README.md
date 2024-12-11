@@ -1,1 +1,1 @@
-Won Kim and Jakub Kielczewski
+by Jakub Kielczewski
