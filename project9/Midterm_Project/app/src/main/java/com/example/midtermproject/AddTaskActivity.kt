@@ -25,7 +25,7 @@ class AddTaskActivity : AppCompatActivity() {
             if (taskName.isNotBlank()) {
                 val resultIntent = Intent()
                 resultIntent.putExtra("task", taskName)
-                setResult(RESULT_OK, resultIntent)
+                setResult(RESULT_OK, resultIntent)//pass name into main activity to add it to firestore
                 finish()
             }
         }

@@ -31,9 +31,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //get email and load tasks
         email = intent?.getStringExtra("USER_EMAIL") ?: ""
-
-
         fetchAndSaveTasks {
             // Now `taskList` is updated with the Firestore data
             Log.d("TaskList", "Loaded tasks: $taskList")
@@ -48,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = taskAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        //update firestore
         fetchTasksFromFirestore(email)
 
         btnAddTask.setOnClickListener {
@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
 
         taskAdapter.notifyDataSetChanged()
 
+        //Used so whenever typed in search bar it filters
         searchBar.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
@@ -88,6 +89,7 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(intent, REQUEST_CODE_TASK_DETAIL)
     }
 
+    //gets data from activity transfer
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         taskAdapter.notifyDataSetChanged()
